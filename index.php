@@ -39,8 +39,9 @@ class fs
 		$res = array();
 		foreach($lst as $item) {
 			if($item == '.' || $item == '..' || $item === null) { continue; }
+			$tmp = preg_match('(/^[\p{L}][^ a-zа-я-_0-9.]+)ui', $item);			
 			//$tmp = preg_match('([^ a-zа-я-_0-9.]+)ui', $item);
-			$tmp = preg_match('/^[\p{L}]+$/ui', $item);
+			//$tmp = preg_match('/^[\p{L}]+$/ui', $item);
 			if($tmp === false || $tmp === 1) { continue; }
 			if(is_dir($dir . DIRECTORY_SEPARATOR . $item)) {
 				$res[] = array('text' => $item, 'children' => true,  'id' => $this->id($dir . DIRECTORY_SEPARATOR . $item), 'icon' => 'folder');
